@@ -34,5 +34,8 @@ let circle = svg.append('circle')
   .attr('r', '60')
   .attr('fill', '#b2df8a')
 
-
+// Make circle clickable
+circle.on('mouseover', function() {
+    this.parentNode.appendChild(this);
+});
 
