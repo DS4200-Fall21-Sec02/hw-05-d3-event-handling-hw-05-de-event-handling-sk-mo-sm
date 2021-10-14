@@ -34,8 +34,57 @@ let circle = svg.append('circle')
   .attr('r', '60')
   .attr('fill', '#b2df8a')
 
-// Make circle clickable
-circle.on('mouseover', function() {
-    this.parentNode.appendChild(this);
-});
 
+// Make circle change color on click
+rect.addEventListener('click',(circle.attr("fill", '#'+Math.floor(Math.random()*16777215).toString(16))))
+if (rect.getClickCount() == 1) {
+  circle.attr("fill", '#'+Math.floor(Math.random()*16777215).toString(16))
+}
+
+
+// Make rect & circle change color on double click
+circle.addEventListener('click',(rect.attr("fill", '#'+Math.floor(Math.random()*16777215).toString(16))))
+if (rect.getClickCount() == 2) {
+  circle.attr("fill", '#'+Math.floor(Math.random()*16777215).toString(16))
+  rect.attr("fill", '#'+Math.floor(Math.random()*16777215).toString(16))
+}
+
+// Make either shape have a thicker border when mouse hovers over
+circle.on('mouseover', function() {
+    document.getElementById("circle").style.borderWidth = "thick";
+});
+rect.on('mouseover', function() {
+    document.getElementById("rect").style.borderWidth = "thick";
+});
+/*
+// Add drag to both shapes
+.call(d3.drag()
+  .on('start', dragStart)
+  .on('drag', dragRect)
+  .on('end', drageEnd)
+);
+
+function dragStart(event, d){
+  event.stopPropagation();
+}
+
+function dragRect(event, d){
+  var xCoor = event.x;
+  var yCoor = event.y;
+  d3.select(this)
+  .attr("x", xCoor)
+  .attr("y", yCoor)
+  this.parentNode.appendChild(this)
+}
+
+function dragCircle(event, d){
+  var xCoordinates = event.x;
+  var yCoordinates = event.y;
+  d3.select(this)
+    .attr("cx", xCoordinates)
+    .attr("cy", yCoordinates);
+  this.parentNode.appendChild(this);
+}
+
+function dragEnd(event, d){
+}*/
